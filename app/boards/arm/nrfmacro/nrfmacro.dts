@@ -7,6 +7,7 @@
 /dts-v1/;
 #include <nordic/nrf52840_qiaa.dtsi>
 #include "arduino_pro_micro_pins.dtsi"
+// #include "nrfmicro-pinctrl.dtsi"
 
 / {
 	model = "nrfmacro";
@@ -59,27 +60,28 @@
 };
 
 &pinctrl {
-	/* UART0 */
 	uart0_default: uart0_default {
 		group1 {
-			psels = <NRF_PSEL(UART_TX, 0, 6)>, /* Port 0, Pin 6 */
-			        <NRF_PSEL(UART_RX, 0, 8)>;   /* Port 0, Pin 8 */
+			psels = <NRF_PSEL(UART_RX, 0, 8)>;
+			bias-pull-up;
+		};
+		group2 {
+			psels = <NRF_PSEL(UART_TX, 0, 6)>;
 		};
 	};
 
 	uart0_sleep: uart0_sleep {
 		group1 {
-			psels = <NRF_PSEL(UART_TX, 0, 6)>,
-					<NRF_PSEL(UART_RX, 0, 8)>;
+			psels = <NRF_PSEL(UART_RX, 0, 8)>,
+					<NRF_PSEL(UART_TX, 0, 6)>;
 			low-power-enable;
 		};
 	};
 
-	/* I²C0 */
 	i2c0_default: i2c0_default {
 		group1 {
-			psels = <NRF_PSEL(TWIM_SDA, 0, 15)>, /* SDA on P0.15 */
-			        <NRF_PSEL(TWIM_SCL, 0, 17)>; /* SCL on P0.17 */
+			psels = <NRF_PSEL(TWIM_SDA, 0, 15)>,
+					<NRF_PSEL(TWIM_SCL, 0, 17)>;
 		};
 	};
 
@@ -110,19 +112,19 @@
 };
 
 &i2c0 {
-	compatible = "nordic,nrf-twi";
 	// sda-pin = <15>;
 	// scl-pin = <17>;
 	// status = "okay";
+	compatible = "nordic,nrf-twi";
 	pinctrl-0 = <&i2c0_default>;
 	pinctrl-1 = <&i2c0_sleep>;
 	pinctrl-names = "default", "sleep";
 };
 
 &uart0 {
-	compatible = "nordic,nrf-uarte";
 	// tx-pin = <6>;
 	// rx-pin = <8>;
+	compatible = "nordic,nrf-uarte";
 	current-speed = <115200>;
 	pinctrl-0 = <&uart0_default>;
 	pinctrl-1 = <&uart0_sleep>;
@@ -180,8 +182,10 @@
 
 &spi1 {
 	// status = "okay";
+	compatible = "nordic,nrf-spim";
 	pinctrl-0 = <&spi1_default>;
-	pinctrl-names = "default";
+	pinctrl-1 = <&spi1_sleep>;
+	pinctrl-names = "default", "sleep";
 	cs-gpios = <&gpio1 0 GPIO_ACTIVE_LOW>;
 
 	epd: il0323@0 {
