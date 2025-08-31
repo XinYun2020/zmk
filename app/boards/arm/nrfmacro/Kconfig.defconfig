@@ -138,18 +138,19 @@ if NRFMACRO_SHIELD_SLAVE
 config LV_FONT_MONTSERRAT_16
     default y
 
-choice LVGL_THEME_DEFAULT_FONT_NORMAL
-    default LVGL_THEME_DEFAULT_FONT_NORMAL_MONTSERRAT_16
+# choice LVGL_THEME_DEFAULT_FONT_NORMAL
+#    default LVGL_THEME_DEFAULT_FONT_NORMAL_MONTSERRAT_16
 
-endchoice
+# endchoice
 
 config LV_FONT_MONTSERRAT_12
     default y
     
-choice LVGL_THEME_DEFAULT_FONT_SMALL
-    default LVGL_THEME_DEFAULT_FONT_SMALL_MONTSERRAT_12
+# choice LVGL_THEME_DEFAULT_FONT_SMALL
+#     default LVGL_THEME_DEFAULT_FONT_SMALL_MONTSERRAT_12
 
-endchoice
+# endchoice
+
 endif
 
 endif # ZMK_DISPLAY_STATUS_SCREEN_CUSTOM
@@ -169,11 +170,11 @@ config LV_USE_CONT
 
 ## oled display configuration
 if NRFMACRO_OLED_DISPLAY
-config LVGL_HOR_RES_MAX
-	default 128
+# config LVGL_HOR_RES_MAX
+# 	default 128
 
-config LVGL_VER_RES_MAX
-	default 32
+# config LVGL_VER_RES_MAX
+# 	default 32
 
 config LV_Z_VDB_SIZE
 	default 64
@@ -187,11 +188,11 @@ if NRFMACRO_EPD_DISPLAY
 config NRFMACRO_EPD_ROTATE_180
   bool "rotate the epd upside-down"
 
-config LVGL_HOR_RES_MAX
-	default 80
+# config LVGL_HOR_RES_MAX
+# 	default 80
 
-config LVGL_VER_RES_MAX
-	default 128
+# config LVGL_VER_RES_MAX
+# 	default 128
 
 config LV_Z_VDB_SIZE
 	default 100
@@ -202,15 +203,15 @@ endif # NRFMACRO_EPD_DISPLAY
 
 ## memory lcd display configuration
 if NRFMACRO_LCD_DISPLAY
-choice LVGL_THEME_DEFAULT_FONT_SMALL
-    default LVGL_THEME_DEFAULT_FONT_SMALL_MONTSERRAT_36
-endchoice
+# choice LVGL_THEME_DEFAULT_FONT_SMALL
+#     default LVGL_THEME_DEFAULT_FONT_SMALL_MONTSERRAT_36
+# endchoice
 
-config LVGL_HOR_RES_MAX
-	default 160
+# config LVGL_HOR_RES_MAX
+# 	default 160
 
-config LVGL_VER_RES_MAX
-	default 68
+# config LVGL_VER_RES_MAX
+# 	default 68
 
 config LV_Z_VDB_SIZE
 	default 16
