@@ -57,10 +57,10 @@ choice
     Specify the role of the keyboard
 
 config NRFMACRO_SHIELD_MASTER
-  bool
+  bool "master side, in charge of communication with host"
 
 config NRFMACRO_SHIELD_SLAVE
-  bool
+  bool "slave side, acting as a peripheral to master side"
 
 endchoice
 
