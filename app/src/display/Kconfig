@@ -1,5 +1,5 @@
-# Copyright (c) 2020 The ZMK Contributors
-# SPDX-License-Identifier: MIT
+#Copyright(c) 2020 The ZMK Contributors
+#SPDX - License - Identifier : MIT
 
 menuconfig ZMK_DISPLAY
     bool "Enable ZMK Display"
@@ -11,11 +11,6 @@ menuconfig ZMK_DISPLAY
     imply LV_CONF_MINIMAL
 
 if ZMK_DISPLAY
-
-choice LVGL_TXT_ENC
-    default LVGL_TXT_ENC_UTF8
-
-endchoice
 
 config ZMK_DISPLAY_BLANK_ON_IDLE
     bool "Blank display on idle"
@@ -84,22 +79,6 @@ config ZMK_DISPLAY_DEDICATED_THREAD_PRIORITY
 endif # ZMK_DISPLAY_WORK_QUEUE_DEDICATED
 
 if ZMK_DISPLAY_STATUS_SCREEN_BUILT_IN
-
-config LVGL_FONT_MONTSERRAT_16
-    default y
-
-choice LVGL_THEME_DEFAULT_FONT_NORMAL
-    default LVGL_THEME_DEFAULT_FONT_NORMAL_MONTSERRAT_16
-
-endchoice
-
-config LVGL_FONT_MONTSERRAT_12
-    default y
-    
-choice LVGL_THEME_DEFAULT_FONT_SMALL
-    default LVGL_THEME_DEFAULT_FONT_SMALL_MONTSERRAT_12
-
-endchoice
 
 config LV_FONT_MONTSERRAT_16
     default y

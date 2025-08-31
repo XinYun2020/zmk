@@ -22,12 +22,12 @@ config NRFMACRO_EPD_DISPLAY
   bool "Use epaper display"
   select SPI
   select IL0323
-	select LVGL_USE_CONT
-	select LVGL_FONT_MONTSERRAT_26
-	select LVGL_FONT_MONTSERRAT_20
-	select LVGL_FONT_MONTSERRAT_16
-	select LVGL_USE_LABEL
-	select LVGL_USE_IMG
+	select LV_USE_CONT
+	select LV_FONT_MONTSERRAT_26
+	select LV_FONT_MONTSERRAT_20
+	select LV_FONT_MONTSERRAT_16
+	select LV_USE_LABEL
+	select LV_USE_IMG
 
 config NRFMACRO_OLED_DISPLAY
   bool "Ues OLED display"
@@ -39,12 +39,12 @@ config NRFMACRO_LCD_DISPLAY
   bool "Use SHARP memory LCD"
   select SPI
   select LS0XX
-	select LVGL_USE_CONT
-	select LVGL_FONT_MONTSERRAT_26
-	# select LVGL_FONT_MONTSERRAT_20
-	# select LVGL_FONT_MONTSERRAT_16
-	# select LVGL_USE_LABEL
-	# select LVGL_USE_IMG
+	select LV_USE_CONT
+	select LV_FONT_MONTSERRAT_26
+	# select LV_FONT_MONTSERRAT_20
+	# select LV_FONT_MONTSERRAT_16
+	# select LV_USE_LABEL
+	# select LV_USE_IMG
 
 endchoice
 
@@ -135,7 +135,7 @@ endif # ZMK_DISPLAY
 if ZMK_DISPLAY_STATUS_SCREEN_CUSTOM
 
 if NRFMACRO_SHIELD_SLAVE
-config LVGL_FONT_MONTSERRAT_16
+config LV_FONT_MONTSERRAT_16
     default y
 
 choice LVGL_THEME_DEFAULT_FONT_NORMAL
@@ -143,7 +143,7 @@ choice LVGL_THEME_DEFAULT_FONT_NORMAL
 
 endchoice
 
-config LVGL_FONT_MONTSERRAT_12
+config LV_FONT_MONTSERRAT_12
     default y
     
 choice LVGL_THEME_DEFAULT_FONT_SMALL
@@ -157,14 +157,14 @@ endif # ZMK_DISPLAY_STATUS_SCREEN_CUSTOM
 ## dedicated configuration
 if LVGL
 
-config LVGL_BITS_PER_PIXEL
+config LV_Z_BITS_PER_PIXEL
 	default 1
 
-choice LVGL_COLOR_DEPTH
-	default LVGL_COLOR_DEPTH_1
+choice LV_COLOR_DEPTH
+	default LV_COLOR_DEPTH_1
 endchoice
 
-config LVGL_USE_CONT
+config LV_USE_CONT
   default y
 
 ## oled display configuration
@@ -175,10 +175,10 @@ config LVGL_HOR_RES_MAX
 config LVGL_VER_RES_MAX
 	default 32
 
-config LVGL_VDB_SIZE
+config LV_Z_VDB_SIZE
 	default 64
 
-config LVGL_DPI
+config LV_DPI_DEF
 	default 148
 endif # NRFMACRO_OLED_DISPLAY
 
@@ -193,10 +193,10 @@ config LVGL_HOR_RES_MAX
 config LVGL_VER_RES_MAX
 	default 128
 
-config LVGL_VDB_SIZE
+config LV_Z_VDB_SIZE
 	default 100
 
-config LVGL_DPI
+config LV_DPI_DEF
 	default 145
 endif # NRFMACRO_EPD_DISPLAY
 
@@ -212,10 +212,10 @@ config LVGL_HOR_RES_MAX
 config LVGL_VER_RES_MAX
 	default 68
 
-config LVGL_VDB_SIZE
+config LV_Z_VDB_SIZE
 	default 16
 
-config LVGL_DPI
+config LV_DPI_DEF
 	default 30
 endif # NRFMACRO_LCD_DISPLAY
 
