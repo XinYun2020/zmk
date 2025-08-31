@@ -12,39 +12,37 @@ config BOARD
 choice
   prompt "nrfmacro Display option"
   depends on ZMK_DISPLAY
+  default NRFMACRO_EPD_DISPLAY        # 默认使用 EPD（可按需改成 OLED 或 LCD）
   help
     Specify the type of the display peripheral.
 
-# config NRFMACRO_NO_DISPLAY
-#   bool "No display screen"
-
 config NRFMACRO_EPD_DISPLAY
-  bool "Use epaper display"
+  bool
   select SPI
   select IL0323
-	select LV_USE_CONT
-	select LV_FONT_MONTSERRAT_26
-	select LV_FONT_MONTSERRAT_20
-	select LV_FONT_MONTSERRAT_16
-	select LV_USE_LABEL
-	select LV_USE_IMG
+  select LV_USE_CONT
+  select LV_FONT_MONTSERRAT_26
+  select LV_FONT_MONTSERRAT_20
+  select LV_FONT_MONTSERRAT_16
+  select LV_USE_LABEL
+  select LV_USE_IMG
 
 config NRFMACRO_OLED_DISPLAY
-  bool "Ues OLED display"
+  bool
   select I2C
   select SSD1306
   select SSD1306_REVERSE_MODE
 
 config NRFMACRO_LCD_DISPLAY
-  bool "Use SHARP memory LCD"
+  bool
   select SPI
   select LS0XX
-	select LV_USE_CONT
-	select LV_FONT_MONTSERRAT_26
-	# select LV_FONT_MONTSERRAT_20
-	# select LV_FONT_MONTSERRAT_16
-	# select LV_USE_LABEL
-	# select LV_USE_IMG
+  select LV_USE_CONT
+  select LV_FONT_MONTSERRAT_26
+  # select LV_FONT_MONTSERRAT_20
+  # select LV_FONT_MONTSERRAT_16
+  # select LV_USE_LABEL
+  # select LV_USE_IMG
 
 endchoice
 
@@ -54,14 +52,15 @@ endchoice
 ## which widget to show on different side of the keyboard
 choice
   prompt "Role of the keyboard"
+  default NRFMACRO_SHIELD_MASTER      # 默认 master
   help
     Specify the role of the keyboard
 
 config NRFMACRO_SHIELD_MASTER
-  bool "master side, in charge of communication with host"
+  bool
 
 config NRFMACRO_SHIELD_SLAVE
-  bool "slave side, acting as a peripheral to master side"
+  bool
 
 endchoice
 
@@ -75,14 +74,15 @@ config NRFMACRO_SCREEN_MARK_LOGO
 
 choice
   prompt "Keyboard logo on the display screen"
+  default NRFMACRO_SCREEN_STANDARD_LOGO   # 默认标准 Logo
   help
     Specify which logo to show on the centre of screen
 
 config NRFMACRO_SCREEN_STANDARD_LOGO
-  bool "Use the standard logo distributed with the firmware source"
+  bool
 
 config NRFMACRO_SCREEN_CUSTOM_LOGO
-  bool "Use the customized logo designed by yourself"
+  bool
 
 endchoice
 
