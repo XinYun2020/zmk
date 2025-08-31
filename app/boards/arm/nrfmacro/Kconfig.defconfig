@@ -237,7 +237,3 @@ config NRFMACRO_POINTDEVICE
   select SPI
 
 endif # BOARD_NRFMACRO
-  bool "add support for point device"
-  select SPI
-
-endif # BOARD_NRFMACRO
