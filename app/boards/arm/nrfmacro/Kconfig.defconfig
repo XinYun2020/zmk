@@ -9,15 +9,16 @@ config BOARD
 	default "nrfmacro"
 
 # DISPLAY options: oled, epd, lcd, default: no display
-choice
+# Reworked: give the choice a name so default symbol is always recognized as a member.
+choice NRFMACRO_DISPLAY_CHOICE
   prompt "nrfmacro Display option"
   depends on ZMK_DISPLAY
-  default NRFMACRO_EPD_DISPLAY        # 默认使用 EPD（可按需改成 OLED 或 LCD）
+  default NRFMACRO_EPD_DISPLAY
   help
     Specify the type of the display peripheral.
 
 config NRFMACRO_EPD_DISPLAY
-  bool
+  bool "EPD display"
   select SPI
   select IL0323
   select LV_USE_CONT
@@ -28,13 +29,13 @@ config NRFMACRO_EPD_DISPLAY
   select LV_USE_IMG
 
 config NRFMACRO_OLED_DISPLAY
-  bool
+  bool "OLED display"
   select I2C
   select SSD1306
   select SSD1306_REVERSE_MODE
 
 config NRFMACRO_LCD_DISPLAY
-  bool
+  bool "Memory LCD display"
   select SPI
   select LS0XX
   select LV_USE_CONT
@@ -43,25 +44,20 @@ config NRFMACRO_LCD_DISPLAY
   # select LV_FONT_MONTSERRAT_16
   # select LV_USE_LABEL
   # select LV_USE_IMG
-
 endchoice
 
-# Role of the keyboard in split setup, default is master (i.e., central)
-## NOTE: this is a dedicated config option for nrfmacro board, so that all shields
-## using this board can share the some configuration. It's mainly used for controlling
-## which widget to show on different side of the keyboard
-choice
+# Role of the keyboard (named choice so CONFIG_NRFMACRO_SHIELD_SLAVE=y is valid)
+choice NRFMACRO_ROLE_CHOICE
   prompt "Role of the keyboard"
-  default NRFMACRO_SHIELD_MASTER      # 默认 master
+  default NRFMACRO_SHIELD_MASTER
   help
-    Specify the role of the keyboard
+    Specify the role of the keyboard in a split setup.
 
 config NRFMACRO_SHIELD_MASTER
-  bool "master side, in charge of communication with host"
+  bool "Master side (central, talks to host)"
 
 config NRFMACRO_SHIELD_SLAVE
-  bool "slave side, acting as a peripheral to master side"
-
+  bool "Slave side (peripheral to master)"
 endchoice
 
 # Rotate the display screen 180 degree (upside down)
@@ -72,18 +68,18 @@ config NRFMACRO_ROTATE_SCREEN
 config NRFMACRO_SCREEN_MARK_LOGO
   bool "show the mark logo on the screen"
 
-choice
+# Logo selection on screen
+choice NRFMACRO_SCREEN_LOGO_CHOICE
   prompt "Keyboard logo on the display screen"
-  default NRFMACRO_SCREEN_STANDARD_LOGO   # 默认标准 Logo
+  default NRFMACRO_SCREEN_STANDARD_LOGO
   help
-    Specify which logo to show on the centre of screen
+    Select which logo to show in the center of the screen.
 
 config NRFMACRO_SCREEN_STANDARD_LOGO
-  bool
+  bool "Standard logo"
 
 config NRFMACRO_SCREEN_CUSTOM_LOGO
-  bool
-
+  bool "Custom logo"
 endchoice
 
 # Customizing margin of the display screen
@@ -237,6 +233,10 @@ menuconfig CUSTOM_WIDGET_PERIPHERAL_STATUS
 
 # add point device
 config NRFMACRO_POINTDEVICE
+  bool "add support for point device"
+  select SPI
+
+endif # BOARD_NRFMACRO
   bool "add support for point device"
   select SPI
 
