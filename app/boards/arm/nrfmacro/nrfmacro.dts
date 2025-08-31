@@ -113,7 +113,7 @@
 	compatible = "nordic,nrf-twi";
 	// sda-pin = <15>;
 	// scl-pin = <17>;
-	status = "okay";
+	// status = "okay";
 	pinctrl-0 = <&i2c0_default>;
 	pinctrl-1 = <&i2c0_sleep>;
 	pinctrl-names = "default", "sleep";
@@ -179,7 +179,7 @@
 };
 
 &spi1 {
-	status = "okay";
+	// status = "okay";
 	pinctrl-0 = <&spi1_default>;
 	pinctrl-names = "default";
 	cs-gpios = <&gpio1 0 GPIO_ACTIVE_LOW>;
@@ -202,7 +202,7 @@
 };
 
 &i2c1 {
-	status = "okay";
+	status = "disabled";
 	pinctrl-0 = <&i2c1_default>;
 	pinctrl-names = "default";
 
